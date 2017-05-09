@@ -36,7 +36,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="basic_form.html">
+                                    <a href="{{ route('admin.sanpham.index') }}">
                                         <i class="fa fa-globe"></i> <span>Sản phẩm</span>
                                     </a>
                                 </li>

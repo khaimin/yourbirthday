@@ -63,7 +63,7 @@ Admin
             <!-- start project list -->
             <table class="table table-striped projects">
               <thead>
-                <tr>
+                <tr class="btn-info">
                   <th style="width: 10%">#</th>
                   <th style="width: 20%">#Mã loại</th>
                   <th style="width: 25%">#Tên</th>
@@ -76,19 +76,19 @@ Admin
                 <tr>
                   <td>#</td>
                   <td>
-                    <a>{{str_limit($data->idLoai, $limit = 80, $end = '...')}}</a>
+                    <a>{{ $data->idLoai }}</a>
                     <br />
-                    <small>Created {{$data->created_at}}</small>
+                    <small>Created {{ $data->created_at }}</small>
                   </td>
                   <td>
                       {{ $data->tenLoai }}
                   </td>
                   <td>
-                    <code></code> hiển thị
+                    <code>0</code> hiển thị
                   </td>
                   <td>
                     <a href="" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                    <a href="{{ route('admin.loaisanpham.edit', $data->idLoai) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                     <a href="{{ route('admin.loaisanpham.del', $data->idLoai) }}"  onclick="return confirm('Xóa dữ liệu?')" class="btn btn-danger btn-xs" ><i class="fa fa-trash-o"></i> Delete </a>
                   </td>
                 </tr>

@@ -71,7 +71,7 @@ class LoaiSanPhamController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -82,7 +82,8 @@ class LoaiSanPhamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = LoaiSanPham::select('idLoai', 'tenLoai')->where('idLoai',$id)->first();
+        return view('admin.pages.loaisanpham.edit', compact('data'));
     }
 
     /**
@@ -94,7 +95,26 @@ class LoaiSanPhamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            
+            'txttenLoai'=>'required',
+        ];
+        $messages = [
+
+            'txttenLoai.required'=>'Tên loại sản phẩm không được để trống'
+            
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $tenloai = $request->txttenLoai;
+           LoaiSanPham::where('idLoai', $id)->update(array(
+                'tenLoai' => $tenloai,
+                ));
+            return redirect()->route('admin.loaisanpham.index')->with(['flash_level'=>'success','flash_message'=>'Sửa thành công']);
+        }
     }
 
     /**
