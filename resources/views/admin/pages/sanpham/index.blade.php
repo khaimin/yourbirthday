@@ -14,8 +14,35 @@ Admin
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
             <div class="sm-st-info">
+                <span></span>
+                Loại Sản Phẩm
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sm-st clearfix">
+            <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
+            <div class="sm-st-info">
                 <span>{{count($data)}}</span>
-               Sản Phẩm
+                Sản Phẩm
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sm-st clearfix">
+            <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+            <div class="sm-st-info">
+                <span>100,320</span>
+                Bài Viết
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sm-st clearfix">
+            <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
+            <div class="sm-st-info">
+                <span>4567</span>
+                Total Documents
             </div>
         </div>
     </div>
@@ -51,31 +78,38 @@ Admin
             <table class="table table-striped projects">
               <thead>
                 <tr class="btn-info">
-                 
-                  <th style="width: 10%">#Tên sản phẩm</th>
-                  <th style="width: 10%">#mô tả</th>
-                   <th style="width: 10%">#hình</th>
+                  
+                  <th style="width: 5%">#</th>
+                  <th style="width: 10%">#tên SP</th>
+                  <th style="width: 7%">#loại SP</th>
+                  <th style="width: 15%">#hình</th>
                   <th style="width: 8%">#giá</th>
+                  <th style="width: 30%">#mô tả</th>
                   <th style="width: 10%">#trạng thái</th>
-                   <th style="width: 15%">#thao tác</th>
+                  <th style="width: 15%">#thao tác</th>
                 </tr>
               </thead>
               <tbody>
               @foreach($data as $data)
                 <tr>
                  
-                 
+                  <td>
+                      {{ $data->idSP }}
+                  </td>
                   <td>
                       {{ $data->tenSP }}
                   </td>
                   <td>
-                      {{ $data->mota }}
+                      {{ $data->idLoai }}
                   </td>
                   <td>
-                      {{ $data->hinh }}
+                      <img src="{{asset('resources/upload/sanpham/'.$data->icon)}}" width="80px" alt="">
                   </td>
-                   <td>
+                  <td>
                       {{ $data->dongia }}
+                  </td>
+                  <td>
+                      {{str_limit($data->mota, $limit = 100, $end = '...')}}
                   </td>
                   <td>
                     <code>0</code> hiển thị

@@ -23,7 +23,7 @@ Admin
                                 <p style="color:red">{{$errors->first('txtidLoai')}}</p>
                               @endif
                           	<label for="idLoai">Mã loại sản phẩm</label>
-                          	<input type="text" name="txtidLoai" class="form-control" id="idLoai" placeholder="Mã loại sản phẩm">
+                          	<input type="text" name="txtidLoai" class="form-control" id="idLoai" placeholder="Mã loại sản phẩm" ">
                       	</div>
                       	<div class="form-group">
                       		@if($errors->has('txttenLoai'))

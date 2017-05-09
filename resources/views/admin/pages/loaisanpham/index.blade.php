@@ -54,7 +54,7 @@ Admin
         <div class="x_panel">
           <div class="x_title">
             <h2>Loại Sản Phẩm</h2><br>
-            <a href="{{ route('admin.loaisanpham.create') }}" class="btn btn-app" style="float: right;">
+            <a href="" class="btn btn-app" style="float: right;">
               <i class="fa fa-edit"></i> Thêm mới
             </a>
             <div class="clearfix"></div>

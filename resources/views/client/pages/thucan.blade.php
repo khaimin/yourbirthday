@@ -10,8 +10,8 @@ Cakes
       <div class="grid_4">
         <div class="gall_block">
           <div class="maxheight">
-            <a href="{{ url('public/images/bbig1.jpg') }}" class="gall_item">
-              <img src="{{ url('public/images/page2_img1.jpg') }}" alt="">
+            <a href="" class="gall_item">
+              <img src="{{asset('resources/upload/sanpham/'.$data->hinh)}}" width="370px" height="250px"  alt="">
             </a>
             <div class="gall_bot">
             <div class="text1"><a href="#">{{ $data->tenSP }}</a></div>

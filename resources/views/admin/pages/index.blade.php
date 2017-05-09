@@ -24,7 +24,7 @@ Admin
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
             <div class="sm-st-info">
-                <span>2200</span>
+                <span>{{ count($sanpham) }}</span>
                 Sản Phẩm
             </div>
         </div>

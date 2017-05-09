@@ -4,19 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SanPham;
+use App\LoaiSanPham;
 use Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use File;
 class SanPhamController extends Controller
 {
+     public function index()
+    {
+        $data = SanPham::All();
+
+        return view('admin.pages.sanpham.index', compact('data'));
+    }
+
+    public function create()
+    {
+        $data = LoaisanPham::select('idLoai', 'tenLoai')->get();
+        $data1= Sanpham::select('idSP')->orderBy('idSP', 'desc')->first();
+        return view('admin.pages.sanpham.create', compact('data', 'data1'));
+    }
+
 	 public function store(Request $request)
     {
         $rules = [
             'txtidLoai'=>'required',
             'txtidSP'=>'required | unique:san_phams,idSP',
             'txttensp'=>'required',
-            'icon'=>'required',
-            'txthinh'=>'required',
+            'ficon'=>'required',
+            'fimage'=>'required',
             'txtmota'=>'required',
             'txtgia'=>'required',
 
@@ -24,11 +40,11 @@ class SanPhamController extends Controller
         $messages = [
 
             'txtidSP.required'=> 'Mã loại sản phẩm không được để trống',
-            'txtidSP.unique'=>' ID sản phẩm đã tồn tại, vui lòng chọn mã loại sản phẩm khác',
+            'txtidSP.unique'=>' ID sản phẩm đã tồn tại, vui lòng chọn mã sản phẩm khác',
             'txtidLoai.required'=>'Tên loại sản phẩm không được để trống',
             'txttensp.required'=>'Tên  sản phẩm không được để trống',
-            'icon.required'=>'icon không được để trống',
-            'txthinh.required'=>'hình sản phẩm không được để trống',
+            'ficon.required'=>'icon không được để trống',
+            'fimage.required'=>'hình sản phẩm không được để trống',
             'txtmota.required'=>'mô tả sản phẩm không được để trống',
             'txtgia.required'=>'giá sản phẩm không được để trống',
            
@@ -39,28 +55,23 @@ class SanPhamController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
         	
-            $data= new SanPham;
-           
-            $data->idSP = $request->txtidSP;
-            $data->idLoai = $request->txtidLoai;
-            $data->tenSP = $request->txttensp;
-            
-          // $data->icon=$request->icon;
-         
-            $data->icon=$request->icon;
-          	$data->hinh=$request->txthinh;
-            $data->mota = $request->txtmota;
-            $data->dongia = $request->txtgia;
-            $data->idNCC=1;
+            $data            = new SanPham;
+            $data->idSP      = $request->txtidSP;
+            $data->idLoai    = $request->txtidLoai;
+            $data->tenSP     = $request->txttensp;
+            $file_name_icon  = $request->file('ficon')->getClientOriginalName();
+            $data->icon      = $file_name_icon;
+            $request->file('ficon')->move('resources/upload/sanpham',$file_name_icon);
+            $file_name       = $request->file('fimage')->getClientOriginalName();
+            $data->hinh      = $file_name;
+            $request->file('fimage')->move('resources/upload/sanpham',$file_name);                
+            $data->mota      = $request->txtmota;
+            $data->dongia    = $request->txtgia;
+            $data->idNCC     = 1;
             $data->trangthai = 0;
 
-
-
-            if($data->save()){
+            $data->save();
             return redirect()->route('admin.sanpham.index')->with(['flash_level'=>'success','flash_message'=>'Thêm sản phẩm thành công']);
-        	}
-        	else
-        	  return redirect()->route('admin.sanpham.create')->with(['flash_level'=>'danger','flash_message'=>'Thêm sản phẩm thất bại']);
         }
     }
      public function updatedata(Request $request,$id)
@@ -92,15 +103,8 @@ class SanPhamController extends Controller
 
 
    
-     public function index()
-    {
-        $data = SanPham::All();
-        return view('admin.pages.sanpham.index', compact('data'));
-    }
-    public function create()
-    {
-    	 return view('admin.pages.sanpham.create');
-    }
+    
+    
 //     public function status($id,$trangthai)
 //     {
 
