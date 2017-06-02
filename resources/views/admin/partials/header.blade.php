@@ -1,6 +1,6 @@
 <header class="header">
-<a href="index.html" class="logo">
-    Director
+<a href="{{ route('index') }}" class="logo">
+    BLISS
 </a>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
@@ -186,7 +186,11 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                <a href="{{ URL::route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-ban fa-fw pull-right"></i> Logout 
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                </a>
                             </li>
                         </ul>
                     </li>

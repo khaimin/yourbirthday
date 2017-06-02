@@ -11,6 +11,12 @@
 |
 */
 /* for client*/
+Route::get('/userregister',['as'=>'userregister','uses'=>'LoginController@register']);
+Route::post('/userregister',['as'=>'userregister','uses'=>'LoginController@create']);
+Route::get('/userlogin',['as'=>'userlogin','uses'=>'LoginController@index']);
+Route::post('/userlogin',['as'=>'userlogin','uses'=>'LoginController@login']);
+Route::post('/userlogout',['as'=>'userlogout','uses'=>'LoginController@logout']);
+
 Route::get('/',['as'=>'index','uses'=>'ClientController@index']);
 Route::get('/banh-kem',['as'=>'banhkem','uses'=>'ClientController@banhkem']);
 Route::get('/thuc-an',['as'=>'thucan','uses'=>'ClientController@thucan']);
@@ -21,8 +27,14 @@ Route::get('/lien-he',['as'=>'lienhe','uses'=>'ClientController@lienhe']);
 
 
 // for admin
+
 Route::group(['prefix'=>'admin'],function(){
     Route::get('/',['as'=>'admin.index','uses'=>'AdminController@index']);
+    Route::get('/register',['as'=>'register','uses'=>'LoginController@register']);
+    Route::post('/register',['as'=>'register','uses'=>'LoginController@create']);
+    Route::get('/login',['as'=>'login','uses'=>'LoginController@index']);
+    Route::post('/login',['as'=>'login','uses'=>'LoginController@login']);
+    Route::post('/logout',['as'=>'logout','uses'=>'LoginController@logout']);
     // group loai san pham
     Route::group(['prefix'=>'loaisanpham'],function(){
     	Route::get('/',['as'=>'admin.loaisanpham.index', 'uses'=>'LoaiSanPhamController@index']);
@@ -40,9 +52,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/update/{id}', ['as'=>'admin.sanpham.update', 'uses'=>'SanPhamController@update']);
         Route::post('/update/{id}', ['as'=>'admin.sanpham.updatedata', 'uses'=>'SanPhamController@updatedata']);
         Route::get('/del/{id}', ['as'=>'admin.sanpham.del', 'uses'=>'SanPhamController@destroy']);
-
-
-
+        
     });
 
 });

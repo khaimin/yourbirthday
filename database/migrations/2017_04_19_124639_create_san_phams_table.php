@@ -15,11 +15,11 @@ class CreateSanPhamsTable extends Migration
     {
         Schema::create('san_phams', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idSP')->unique();
-            $table->integer('idLoai');
+            $table->string('idSP')->unique();
+            $table->string('idLoai');
             $table->foreign('idLoai')->references('idLoai')->on('loai_san_phams')->onDelete('cascade');
             $table->string('tenSP');
-            $table->integer('idNCC');
+            $table->string('idNCC');
             $table->string('icon');
             $table->string('hinh');
             $table->text('mota');

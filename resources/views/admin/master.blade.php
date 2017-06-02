@@ -139,6 +139,6 @@
             });
             // Chart.defaults.global.responsive = true;
 </script>
-
+@yield('body.js')
 </body>
 </html>

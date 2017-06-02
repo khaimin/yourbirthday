@@ -30,7 +30,7 @@ Admin
                                 <p style="color:red">{{$errors->first('txtidSP')}}</p>
                               @endif
                             <label for="idSP">ID sản phẩm</label>
-                            <input type="text" name="txtidSP" class="form-control" id="idSP" placeholder="id sản phẩm" value="{{ $data1->idSP+1 }}">
+                            <input type="text" name="txtidSP" class="form-control" id="idSP" placeholder="id sản phẩm" value="">
                         </div>
                         <div class="form-group">
                           @if($errors->has('txtidLoai'))
@@ -62,12 +62,13 @@ Admin
                         </div>
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Ảnh đại diện<span class="required">*</span></label>
+                          
                           <div class="col-md-9 col-sm-9 col-xs-12">
                             <code>Hãy chọn ảnh với kích thước 800 x 530 pixel</code>
                                 @if($errors->has('fimage'))
                                   <p style="color:red">{{$errors->first('fimage')}}</p>
                                 @endif
-                                  <input  type="file" name="fimage" value="{{ old('fimage') }}">
+                                  <input  type="file" name="fimage">
                           </div>
                         </div>
                         <div class="form-group">

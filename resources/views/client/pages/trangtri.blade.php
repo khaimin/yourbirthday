@@ -7,7 +7,7 @@ Cakes
   <div class="container">
     <div class="row">
     @foreach($data as $data)
-      <div class="grid_4">
+      <div class="grid_4" style="padding-top: 20px">
         <div class="gall_block">
           <div class="maxheight">
             <a href="" class="gall_item">

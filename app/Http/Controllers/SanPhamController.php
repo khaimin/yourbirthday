@@ -9,20 +9,24 @@ use Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 use File;
+use Auth;
 class SanPhamController extends Controller
 {
      public function index()
-    {
-        $data = SanPham::All();
-
-        return view('admin.pages.sanpham.index', compact('data'));
+    {   if(Auth::check()){
+            $data = SanPham::All();
+            return view('admin.pages.sanpham.index', compact('data'));
+        }
+        else return redirect()->route('login');
     }
 
     public function create()
     {
+        if(Auth::check()){
         $data = LoaisanPham::select('idLoai', 'tenLoai')->get();
-        $data1= Sanpham::select('idSP')->orderBy('idSP', 'desc')->first();
-        return view('admin.pages.sanpham.create', compact('data', 'data1'));
+        return view('admin.pages.sanpham.create', compact('data'));
+        }
+        else return redirect()->route('login');
     }
 
 	 public function store(Request $request)
@@ -127,14 +131,14 @@ class SanPhamController extends Controller
     	 
 //     }
         public function update($id)
-    {
-    	if($id){
-       	 $data = SanPham::All()
-       	 ->where('idSP',$id);
-       	
-       	
-    	 return view('admin.pages.sanpham.update',compact('data'));
-    	}
+    {   
+        if(Auth::check()){
+        	$data = SanPham::All()->where('idSP',$id)->first();
+           	$data1 = LoaisanPham::select('idLoai', 'tenLoai')->get();
+           	
+        	return view('admin.pages.sanpham.update',compact('data','data1'));
+        }
+        else return redirect()->route('login');
     }
        public function destroy($id)
     {

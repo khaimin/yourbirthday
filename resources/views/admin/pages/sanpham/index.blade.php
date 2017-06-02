@@ -79,14 +79,14 @@ Admin
               <thead>
                 <tr class="btn-info">
                   
-                  <th style="width: 5%">#</th>
+                  <th style="width: 15%">#id</th>
                   <th style="width: 10%">#tên SP</th>
-                  <th style="width: 7%">#loại SP</th>
-                  <th style="width: 15%">#hình</th>
-                  <th style="width: 8%">#giá</th>
-                  <th style="width: 30%">#mô tả</th>
+                  <th style="width: 10%">#loại SP</th>
+                  <th style="width: 10%">#hình</th>
+                  <th style="width: 5%">#giá</th>
+                  <th style="width: 27%">#mô tả</th>
                   <th style="width: 10%">#trạng thái</th>
-                  <th style="width: 15%">#thao tác</th>
+                  <th style="width: 13%">#thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -95,6 +95,8 @@ Admin
                  
                   <td>
                       {{ $data->idSP }}
+                      <br>
+                      <small style="font-size: 10px">Created {{$data->created_at}}</small>
                   </td>
                   <td>
                       {{ $data->tenSP }}
